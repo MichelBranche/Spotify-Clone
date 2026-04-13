@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Spotify – Ascolta musica in streaming. Milioni di brani e podcast.">
+    <title>Spotify – Web Player: Musica per tutti</title>
+    <link rel="icon" href="https://open.spotifycdn.com/cdn/images/favicon32.b64ecc03.png" type="image/png">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="app">
+        <!-- ═══════ TOP NAVIGATION BAR ═══════ -->
+        <div class="top-bar">
+            <div class="top-bar-left">
+                <!-- Spotify Logo -->
+                <div class="spotify-logo" id="logo-home">
+                    <svg viewBox="0 0 24 24"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>
+                </div>
+                <!-- Home Button -->
+                <button class="home-btn active" id="btn-home" title="Home">
+                    <svg viewBox="0 0 24 24"><path d="M13.5 1.515a3 3 0 0 0-3 0L3 5.845a2 2 0 0 0-1 1.732V21a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-6h4v6a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V7.577a2 2 0 0 0-1-1.732l-7.5-4.33z"/></svg>
+                </button>
+                <!-- Search Bar -->
+                <div class="search-container">
+                    <div class="search-input-wrapper">
+                        <svg class="search-icon" viewBox="0 0 24 24"><path d="M10.533 1.279c-5.18 0-9.407 4.14-9.407 9.279s4.226 9.279 9.407 9.279c2.234 0 4.29-.77 5.907-2.058l4.353 4.353a1 1 0 1 0 1.414-1.414l-4.344-4.344a9.157 9.157 0 0 0 2.077-5.816c0-5.14-4.226-9.28-9.407-9.28zm-7.407 9.28c0-4.006 3.302-7.28 7.407-7.28s7.407 3.274 7.407 7.279-3.302 7.279-7.407 7.279-7.407-3.273-7.407-7.279z"/></svg>
+                        <input type="text" class="search-input" id="search-input" placeholder="Cosa vuoi ascoltare?">
+                        <div class="search-divider"></div>
+                        <button class="browse-btn" title="Sfoglia">
+                            <svg viewBox="0 0 24 24"><path d="M4 2a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v4H4V2zM1.513 9.37A1 1 0 0 1 2.291 9H21.71a1 1 0 0 1 .978 1.208l-2.17 10.208A2 2 0 0 1 18.562 22H5.438a2 2 0 0 1-1.956-1.584l-2.17-10.208a1 1 0 0 1 .201-.837z"/></svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="top-bar-right">
+                <a href="#" class="top-link">Premium</a>
+                <a href="#" class="top-link">Assistenza</a>
+                <a href="#" class="top-link">Scarica</a>
+                <div class="top-bar-divider"></div>
+                <a href="#" class="top-link" style="display:inline-flex;align-items:center;gap:8px;">
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M4.995 8.745a.75.75 0 0 1 .75.75v4.382l4.108-3.2a.75.75 0 0 1 .462-.159H14.5V3.5h-13v5.245h3.495zM1.5 2h13A1.5 1.5 0 0 1 16 3.5v7.018a1.5 1.5 0 0 1-1.5 1.5H10.56l-4.917 3.832A.75.75 0 0 1 4.245 15.3v-2.537H1.5A1.5 1.5 0 0 1 0 11.268V3.5A1.5 1.5 0 0 1 1.5 2z"/></svg>
+                    Installa app
+                </a>
+                <div class="top-bar-divider"></div>
+                <div id="auth-section" style="display:flex;align-items:center;gap:16px;">
+                    <button class="btn-signup" onclick="openLoginModal()">Iscriviti</button>
+                    <button class="btn-login" id="btn-login" onclick="openLoginModal()">Accedi</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- ═══════ CONTENT WRAPPER ═══════ -->
+        <div class="content-wrapper">
+            <!-- ═══════ SIDEBAR ═══════ -->
+            <aside class="sidebar">
+                <div class="sidebar-header">
+                    <div class="sidebar-header-left">
+                        <svg viewBox="0 0 24 24"><path d="M3 22a1 1 0 0 1-1-1V3a1 1 0 0 1 2 0v18a1 1 0 0 1-1 1zM15.5 2.134A1 1 0 0 0 14 3v18a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V6.464a1 1 0 0 0-.5-.866l-6-3.464zM9 2a1 1 0 0 0-1 1v18a1 1 0 1 0 2 0V3a1 1 0 0 0-1-1z"/></svg>
+                        La tua libreria
+                    </div>
+                    <button class="btn-create">
+                        <svg viewBox="0 0 16 16"><path d="M15.25 8a.75.75 0 0 1-.75.75H8.75v5.75a.75.75 0 0 1-1.5 0V8.75H1.5a.75.75 0 0 1 0-1.5h5.75V1.5a.75.75 0 0 1 1.5 0v5.75h5.75a.75.75 0 0 1 .75.75z"/></svg>
+                        Crea
+                    </button>
+                </div>
+                <div class="sidebar-content">
+                    <div class="sidebar-card">
+                        <h4>Crea la tua prima playlist</h4>
+                        <p>È facile, ti aiuteremo</p>
+                        <button class="sidebar-card-btn">Crea playlist</button>
+                    </div>
+                    <div class="sidebar-card">
+                        <h4>Cerca qualche podcast da seguire</h4>
+                        <p>Ti aggiorneremo sui nuovi episodi</p>
+                        <button class="sidebar-card-btn">Sfoglia i podcast</button>
+                    </div>
+                </div>
+                <div class="sidebar-footer">
+                    <div class="legal-links">
+                        <a href="#">Informazioni legali</a>
+                        <a href="#">Sicurezza e Centro sulla privacy</a>
+                        <a href="#">Informativa sulla privacy</a>
+                        <a href="#">Impostazioni cookie</a>
+                        <a href="#">Info annunci</a>
+                        <a href="#">Accessibilità</a>
+                    </div>
+                    <a href="#" class="legal-links" style="margin-bottom:24px;display:block;font-size:11px;color:var(--text-secondary);">Politica sui cookie</a>
+                    <button class="lang-btn">
+                        <svg viewBox="0 0 16 16"><path d="M8.152 16H8a8 8 0 1 1 .152 0zm-.41-14.984c-.19.07-.684.36-1.21 1.476-.26.546-.476 1.18-.64 1.882h3.716a8.076 8.076 0 0 0-.64-1.882c-.525-1.116-1.019-1.406-1.209-1.476a1.762 1.762 0 0 0-.018 0zm2.456.648c.206.398.39.842.548 1.33.143.44.263.91.357 1.406h2.712a6.528 6.528 0 0 0-3.617-2.736zM13.6 5.9h-2.924c.076.63.122 1.295.131 1.99H14.5A6.473 6.473 0 0 0 13.6 5.9zm-4.28 1.99a17.673 17.673 0 0 0-.142-1.99H6.822a17.673 17.673 0 0 0-.14 1.99h3.64zm-5.112 0H1.5c.056.692.234 1.358.517 1.978h2.772a19.02 19.02 0 0 1-.08-1.978zm.46-1.5c.077-.527.178-1.025.302-1.49.145-.539.322-1.023.523-1.446A6.528 6.528 0 0 0 1.884 6.39h2.784zM1.884 9.578A6.528 6.528 0 0 0 5.5 12.336a8.895 8.895 0 0 1-.496-1.297 11.327 11.327 0 0 1-.324-1.46H1.884zm4.626 0c.09.573.215 1.107.37 1.587.224.69.498 1.247.8 1.652.246.332.504.553.746.66a1.59 1.59 0 0 0 .296 0c.242-.107.5-.328.746-.66.302-.405.576-.961.8-1.652.155-.48.28-1.014.37-1.587H6.51zm5.122 0a11.327 11.327 0 0 1-.324 1.46 8.895 8.895 0 0 1-.496 1.298 6.528 6.528 0 0 0 3.617-2.758h-2.797zm2.183-1.6H11.07c.01-.695-.055-1.36-.131-1.99h2.924c.283.62.46 1.286.517 1.978v.011h-.565z"/></svg>
+                        Italiano
+                    </button>
+                </div>
+            </aside>
+
+            <!-- ═══════ MAIN VIEW ═══════ -->
+            <main id="main-view" class="home-bg">
+                <div id="content-area">
+                    <!-- Dynamic content loads here -->
+                    <div class="loading-spinner"><div class="spinner"></div></div>
+                </div>
+            </main>
+        </div>
+
+
+        <!-- ═══════ PLAYER BAR (shown when playing) ═══════ -->
+        <div class="player-bar" id="player-bar">
+            <!-- Now Playing -->
+            <div class="now-playing">
+                <img src="" alt="" class="now-cover hidden" id="now-cover">
+                <div class="now-meta">
+                    <div class="now-title" id="now-title"></div>
+                    <div class="now-artist" id="now-artist"></div>
+                </div>
+                <button class="now-like" id="now-like" title="Mi piace">
+                    <svg viewBox="0 0 16 16"><path d="M1.69 2A4.582 4.582 0 0 1 8 2.023 4.583 4.583 0 0 1 11.88.817h.002a4.618 4.618 0 0 1 3.782 3.65v.003a4.543 4.543 0 0 1-1.011 3.84L9.35 14.629a1.765 1.765 0 0 1-2.093.464 1.762 1.762 0 0 1-.605-.463L1.348 8.309A4.582 4.582 0 0 1 1.689 2zm3.158.252A3.082 3.082 0 0 0 2.49 7.23l.005.005 5.303 6.32c.069.084.207.084.276 0l5.308-6.325A3.042 3.042 0 0 0 14.056 3.7 3.117 3.117 0 0 0 11.882 2.3a3.073 3.073 0 0 0-2.276.921L8.8 4.028a1.13 1.13 0 0 1-1.6 0l-.804-.806A3.073 3.073 0 0 0 4.848 2.252z"/></svg>
+                </button>
+            </div>
+            <!-- Player Center -->
+            <div class="player-center">
+                <div class="controls-row">
+                    <button class="ctrl-btn" id="btn-shuffle" title="Shuffle">
+                        <svg viewBox="0 0 16 16"><path d="M13.151.922a.75.75 0 1 0-1.06 1.06L13.109 3H11.16a3.75 3.75 0 0 0-2.873 1.34l-6.173 7.356A2.25 2.25 0 0 1 .39 12.5H0V14h.391a3.75 3.75 0 0 0 2.873-1.34l6.173-7.356a2.25 2.25 0 0 1 1.724-.804h1.947l-1.017 1.018a.75.75 0 0 0 1.06 1.06l2.306-2.306a.75.75 0 0 0 0-1.06L13.15.92zM.391 3.5H0V2h.391c1.109 0 2.16.49 2.873 1.34L4.89 5.277l-.979 1.167-1.796-2.14A2.25 2.25 0 0 0 .39 3.5zm7.72 7.223 1.789-2.131L10.8 10.3a2.25 2.25 0 0 0 1.724.804h1.947l-1.017-1.018a.75.75 0 1 1 1.06-1.06l2.306 2.306a.75.75 0 0 1 0 1.06L14.512 14.7a.75.75 0 1 1-1.06-1.06l1.018-1.018H12.52a3.75 3.75 0 0 1-2.873-1.34l-1.537-1.56z"/></svg>
+                    </button>
+                    <button class="ctrl-btn" id="btn-prev" title="Precedente">
+                        <svg viewBox="0 0 16 16"><path d="M3.3 1a.7.7 0 0 1 .7.7v5.15l9.95-5.744a.7.7 0 0 1 1.05.606v12.575a.7.7 0 0 1-1.05.607L4 9.149V14.3a.7.7 0 0 1-.7.7H2.7a.7.7 0 0 1-.7-.7V1.7a.7.7 0 0 1 .7-.7h.6z"/></svg>
+                    </button>
+                    <button class="ctrl-play" id="btn-play" title="Riproduci">
+                        <svg class="play-icon" id="play-icon" viewBox="0 0 16 16"><path d="M3 1.713a.7.7 0 0 1 1.05-.607l10.89 6.288a.7.7 0 0 1 0 1.212L4.05 14.894A.7.7 0 0 1 3 14.288V1.713z"/></svg>
+                    </button>
+                    <button class="ctrl-btn" id="btn-next" title="Successivo">
+                        <svg viewBox="0 0 16 16"><path d="M12.7 1a.7.7 0 0 0-.7.7v5.15L2.05 1.107A.7.7 0 0 0 1 1.712v12.575a.7.7 0 0 0 1.05.607L12 9.149V14.3a.7.7 0 0 0 .7.7h.6a.7.7 0 0 0 .7-.7V1.7a.7.7 0 0 0-.7-.7h-.6z"/></svg>
+                    </button>
+                    <button class="ctrl-btn" id="btn-repeat" title="Ripeti">
+                        <svg viewBox="0 0 16 16"><path d="M0 4.75A3.75 3.75 0 0 1 3.75 1h8.5A3.75 3.75 0 0 1 16 4.75v5a3.75 3.75 0 0 1-3.75 3.75H9.81l1.018 1.018a.75.75 0 1 1-1.06 1.06L7.461 13.28l2.306-2.311a.75.75 0 0 1 1.061 1.06l-1.018 1.018h2.44a2.25 2.25 0 0 0 2.25-2.25v-5a2.25 2.25 0 0 0-2.25-2.25h-8.5A2.25 2.25 0 0 0 1.5 4.75v5A2.25 2.25 0 0 0 3.75 12H5v1.5H3.75A3.75 3.75 0 0 1 0 9.75v-5z"/></svg>
+                    </button>
+                </div>
+                <div class="progress-container">
+                    <span class="progress-time" id="time-current">0:00</span>
+                    <div class="progress-bar-wrapper" id="progress-wrapper">
+                        <div class="progress-bar-bg">
+                            <div class="progress-bar-fill" id="progress-fill">
+                                <div class="progress-bar-thumb"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <span class="progress-time right" id="time-total">0:00</span>
+                </div>
+            </div>
+            <!-- Player Right -->
+            <div class="player-right">
+                <button class="ctrl-btn" title="Testi">
+                    <svg viewBox="0 0 16 16"><path d="M13.426 2.574a2.831 2.831 0 0 0-4.797 1.55l3.247 3.247a2.831 2.831 0 0 0 1.55-4.797zM10.5 8.118l-2.619-2.62A63.088 63.088 0 0 1 1.923 9.87a.75.75 0 0 1-.453-1.43 61.628 61.628 0 0 0 5.609-4.127l-2.68-2.68a.75.75 0 0 1 1.06-1.06l9.587 9.586a.75.75 0 1 1-1.06 1.061L10.5 8.118z"/></svg>
+                </button>
+                <button class="ctrl-btn" title="Coda">
+                    <svg viewBox="0 0 16 16"><path d="M15 15H1v-1.5h14V15zm0-4.5H1V9h14v1.5zm-14-7A2.5 2.5 0 0 1 3.5 1h9a2.5 2.5 0 0 1 0 5h-9A2.5 2.5 0 0 1 1 3.5zm2.5-1a1 1 0 0 0 0 2h9a1 1 0 1 0 0-2h-9z"/></svg>
+                </button>
+                <button class="ctrl-btn" title="Connetti a un dispositivo">
+                    <svg viewBox="0 0 16 16"><path d="M6 2.75C6 1.784 6.784 1 7.75 1h6.5c.966 0 1.75.784 1.75 1.75v10.5A1.75 1.75 0 0 1 14.25 15h-6.5A1.75 1.75 0 0 1 6 13.25V2.75zm1.75-.25a.25.25 0 0 0-.25.25v10.5c0 .138.112.25.25.25h6.5a.25.25 0 0 0 .25-.25V2.75a.25.25 0 0 0-.25-.25h-6.5zm-6 0a.25.25 0 0 0-.25.25v6.5c0 .138.112.25.25.25H4V11H1.75A1.75 1.75 0 0 1 0 9.25v-6.5C0 1.784.784 1 1.75 1H4v1.5H1.75z"/></svg>
+                </button>
+                <div class="vol-wrapper">
+                    <button class="ctrl-btn" id="btn-vol-icon" title="Volume">
+                        <svg viewBox="0 0 16 16" id="vol-icon"><path d="M9.741.85a.75.75 0 0 1 .375.65v13a.75.75 0 0 1-1.125.65l-6.925-4a3.642 3.642 0 0 1-1.33-4.967 3.639 3.639 0 0 1 1.33-1.332l6.925-4a.75.75 0 0 1 .75 0zm-6.924 5.3a2.139 2.139 0 0 0 0 3.7l5.683 3.28V2.87L2.817 6.15zm8.683.45a4.138 4.138 0 0 1 0 3.2.75.75 0 0 1-1.399-.54 2.635 2.635 0 0 0 0-2.12.75.75 0 0 1 1.4-.54zm1.3-1.8a6.645 6.645 0 0 1 0 6.2.75.75 0 0 1-1.32-.72 5.145 5.145 0 0 0 0-4.76.75.75 0 0 1 1.32-.72z"/></svg>
+                    </button>
+                    <div class="vol-bar-wrapper" id="vol-wrapper">
+                        <div class="vol-bar-bg">
+                            <div class="vol-bar-fill" id="vol-fill">
+                                <div class="vol-bar-thumb"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modals -->
+    <div class="modal-overlay" id="login-modal">
+        <div class="modal-content">
+            <h2>Accedi a Spotify</h2>
+            <input type="text" id="login-username" placeholder="Inserisci il tuo nome" class="sp-input">
+            <div style="display:flex;gap:8px;margin-top:16px;">
+                <button class="btn-modal-submit" onclick="handleLogin()">Accedi</button>
+                <button class="btn-modal-cancel" onclick="closeLoginModal()">Annulla</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="playlist-modal">
+        <div class="modal-content">
+            <h2>Aggiungi alla playlist</h2>
+            <div id="playlist-list" class="playlist-list"></div>
+            <div class="create-playlist-row" style="display:flex;gap:8px;margin-top:16px;">
+                <input type="text" id="new-playlist-name" placeholder="Nuova playlist" class="sp-input" style="flex:1;">
+                <button class="btn-modal-submit" onclick="createPlaylist()">Crea</button>
+            </div>
+            <button class="btn-modal-cancel" style="margin-top:16px;width:100%;" onclick="closePlaylistModal()">Chiudi</button>
+        </div>
+    </div>
+
+    <audio id="audio-engine" preload="auto"></audio>
+    <script src="script.js"></script>
+</body>
+</html>
